@@ -1,7 +1,7 @@
 Name:       libomxil-e54xx
 Summary:    OpenMAX IL for Exynos libomxil-e54xx series
 Version:    1.1.0
-Release:    2
+Release:    3
 Group:      Development/Libraries
 License:    LGPLv2+
 ExclusiveArch: %arm
