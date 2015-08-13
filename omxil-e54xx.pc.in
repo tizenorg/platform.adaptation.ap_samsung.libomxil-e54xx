@@ -1,0 +1,12 @@
+prefix=@prefix@
+libdir=@prefix@/lib
+includedir=@prefix@/include
+
+Name: Samsung OpenMAX IL package
+Description: Samsung E4X12 codec
+Version: @VERSION@
+Requires:
+Libs: -L${libdir} -lExynosOMX_Core
+
+Cflags: -I${includedir}/libomxil-e4x12 -DUSE_SAMSUNG_COLORFORMAT -DNONBLOCK_MODE_PROCESS
+
