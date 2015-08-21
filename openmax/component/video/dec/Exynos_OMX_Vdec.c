@@ -307,11 +307,11 @@ OMX_BOOL Exynos_CSC_OutputData(OMX_COMPONENTTYPE *pOMXComponent, EXYNOS_OMX_DATA
     pSlpOutBuf->width[0] = width;
     pSlpOutBuf->width[1] = width;
     pSlpOutBuf->height[0] = height;
-    pSlpOutBuf->height[1] = height;
-    pSlpOutBuf->stride_width[0] = width; /* need to check. stride */
-    pSlpOutBuf->stride_width[1] = width;
-    pSlpOutBuf->stride_height[0] = height; /* need to check. elevation */
-    pSlpOutBuf->stride_height[1] = height;
+    pSlpOutBuf->height[1] = height/2;
+    pSlpOutBuf->stride_width[0] = ALIGN(width, S5P_FIMV_NV12M_HALIGN);
+    pSlpOutBuf->stride_width[1] = ALIGN(width, S5P_FIMV_NV12M_HALIGN);
+    pSlpOutBuf->stride_height[0] = ALIGN(height, S5P_FIMV_NV12M_HALIGN);
+    pSlpOutBuf->stride_height[1] = ALIGN(height/2, S5P_FIMV_NV12M_HALIGN);
 
     if (pVideoDec->bDRMPlayerMode == OMX_TRUE) {
         pSlpOutBuf->data[0] = 0;
@@ -590,7 +590,7 @@ OMX_BOOL Exynos_Postprocess_OutputData(OMX_COMPONENTTYPE *pOMXComponent, EXYNOS_
             dstOutputData->timeStamp, dstOutputData->timeStamp / 1E6);
         if ((pExynosComponent->checkTimeStamp.needCheckStartTimeStamp == OMX_TRUE) &&
             ((dstOutputData->nFlags & OMX_BUFFERFLAG_EOS) != OMX_BUFFERFLAG_EOS)) {
-            if ((pExynosComponent->checkTimeStamp.startTimeStamp == dstOutputData->timeStamp) &&
+            if (1 || (pExynosComponent->checkTimeStamp.startTimeStamp == dstOutputData->timeStamp) &&
                 (pExynosComponent->checkTimeStamp.nStartFlags == dstOutputData->nFlags)){
                 pExynosComponent->checkTimeStamp.startTimeStamp = -19761123;
                 pExynosComponent->checkTimeStamp.nStartFlags = 0x0;

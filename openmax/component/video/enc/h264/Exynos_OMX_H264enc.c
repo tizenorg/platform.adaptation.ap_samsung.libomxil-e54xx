@@ -1988,7 +1988,7 @@ OMX_ERRORTYPE Exynos_H264Enc_SrcIn(OMX_COMPONENTTYPE *pOMXComponent, EXYNOS_OMX_
             nAllocLen[1] = ALIGN(nAllocLen[0]/2,256);
             for (plane = 0; plane < MFC_INPUT_BUFFER_PLANE; plane++) {
                 planes[plane].addr = pSrcInputData->buffer.multiPlaneBuffer.dataBuffer[plane];
-                planes[plane].allocSize = nAllocLen[plane];
+                planes[plane].allocSize = pSrcInputData->buffer.multiPlaneBuffer.size[plane];
                 planes[plane].fd = pSrcInputData->buffer.multiPlaneBuffer.fd[plane];
             }
 

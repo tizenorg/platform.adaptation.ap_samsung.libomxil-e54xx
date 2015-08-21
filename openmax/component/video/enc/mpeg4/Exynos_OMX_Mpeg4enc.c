@@ -2100,12 +2100,12 @@ OMX_ERRORTYPE Exynos_Mpeg4Enc_SrcIn(OMX_COMPONENTTYPE *pOMXComponent, EXYNOS_OMX
             /*(pExynosInputPort->bStoreMetaData == OMX_TRUE) &&*/
             (pExynosInputPort->bufferProcessType & BUFFER_SHARE)) {
             OMX_U32 nAllocLen[MFC_INPUT_BUFFER_PLANE] = {0, 0};
-            nAllocLen[0] = ALIGN_TO_128B(pExynosInputPort->portDefinition.format.video.nFrameWidth) *
+            /*nAllocLen[0] = ALIGN_TO_128B(pExynosInputPort->portDefinition.format.video.nFrameWidth) *
                                 ALIGN_TO_128B(pExynosInputPort->portDefinition.format.video.nFrameHeight);
-            nAllocLen[1] = ALIGN(nAllocLen[0]/2,256);
+            nAllocLen[1] = ALIGN(nAllocLen[0]/2,256);*/
             for (plane = 0; plane < MFC_INPUT_BUFFER_PLANE; plane++) {
                 planes[plane].addr = pSrcInputData->buffer.multiPlaneBuffer.dataBuffer[plane];
-                planes[plane].allocSize = nAllocLen[plane];
+                planes[plane].allocSize = pSrcInputData->buffer.multiPlaneBuffer.size[plane];
                 planes[plane].fd = pSrcInputData->buffer.multiPlaneBuffer.fd[plane];
             }
 
