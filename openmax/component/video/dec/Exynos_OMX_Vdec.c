@@ -590,7 +590,7 @@ OMX_BOOL Exynos_Postprocess_OutputData(OMX_COMPONENTTYPE *pOMXComponent, EXYNOS_
             dstOutputData->timeStamp, dstOutputData->timeStamp / 1E6);
         if ((pExynosComponent->checkTimeStamp.needCheckStartTimeStamp == OMX_TRUE) &&
             ((dstOutputData->nFlags & OMX_BUFFERFLAG_EOS) != OMX_BUFFERFLAG_EOS)) {
-            if ((pExynosComponent->checkTimeStamp.startTimeStamp == dstOutputData->timeStamp) &&
+            if (1 || (pExynosComponent->checkTimeStamp.startTimeStamp == dstOutputData->timeStamp) &&
                 (pExynosComponent->checkTimeStamp.nStartFlags == dstOutputData->nFlags)){
                 pExynosComponent->checkTimeStamp.startTimeStamp = -19761123;
                 pExynosComponent->checkTimeStamp.nStartFlags = 0x0;
