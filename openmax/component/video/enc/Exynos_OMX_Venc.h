@@ -60,7 +60,7 @@
 #ifdef SLP_PLATFORM
 /* FIXME: for camera slow motion 12 buffer and eos issue, we increase this value */
 /* FIXME: for trim small resolution video. dec + enc case */
-#define MAX_CAMERA_INPUTBUFFER_NUM          25 /* number of metadata buffer */
+#define MAX_CAMERA_INPUTBUFFER_NUM          13 /* number of metadata buffer */
 #else
 #define MAX_CAMERA_INPUTBUFFER_NUM          12 /* number of metadata buffer */
 #endif

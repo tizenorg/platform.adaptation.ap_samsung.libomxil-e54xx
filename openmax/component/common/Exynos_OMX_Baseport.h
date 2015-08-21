@@ -56,6 +56,7 @@ typedef struct _EXYNOS_OMX_BUFFERHEADERTYPE
     void                 *pYUVBuf[MAX_BUFFER_PLANE];
     int                   buf_fd[MAX_BUFFER_PLANE];
     void                 *tbm_bo[MAX_BUFFER_PLANE];
+    int                   size[MAX_BUFFER_PLANE];
 } EXYNOS_OMX_BUFFERHEADERTYPE;
 
 typedef struct _EXYNOS_OMX_DATABUFFER
@@ -86,6 +87,7 @@ typedef struct _EXYNOS_OMX_MULTIPLANE_DATA
     OMX_PTR dataBuffer[MAX_BUFFER_PLANE];
     int     fd[MAX_BUFFER_PLANE];
     void   *tbm_bo[MAX_BUFFER_PLANE];
+    int     size[MAX_BUFFER_PLANE];
 } EXYNOS_OMX_MULTIPLANE_DATA;
 
 typedef struct _EXYNOS_OMX_DATA

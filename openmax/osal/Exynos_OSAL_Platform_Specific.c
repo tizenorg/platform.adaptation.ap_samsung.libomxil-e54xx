@@ -213,17 +213,19 @@ OMX_ERRORTYPE Exynos_OSAL_UnlockPB(OMX_IN OMX_PTR pBuffer, EXYNOS_OMX_DATA *pDat
         pSlpOutBuf->width[0] = pExynosPort->cropRectangle.nWidth;
         pSlpOutBuf->width[1] = pExynosPort->cropRectangle.nWidth;
         pSlpOutBuf->height[0] = pExynosPort->cropRectangle.nHeight;
-        pSlpOutBuf->height[1] = pExynosPort->cropRectangle.nHeight;
+        pSlpOutBuf->height[1] = pExynosPort->cropRectangle.nHeight/2;
     } else {
         pSlpOutBuf->width[0] = pBufferInfo->imageWidth;
         pSlpOutBuf->width[1] = pBufferInfo->imageWidth;
         pSlpOutBuf->height[0] = pBufferInfo->imageHeight;
-        pSlpOutBuf->height[1] = pBufferInfo->imageHeight;
+        pSlpOutBuf->height[1] = pBufferInfo->imageHeight/2;
     }
-    pSlpOutBuf->stride_width[0] = pBufferInfo->imageWidth; /* need to check. stride */
-    pSlpOutBuf->stride_width[1] = pBufferInfo->imageWidth;
-    pSlpOutBuf->stride_height[0] = pBufferInfo->imageHeight; /* need to check. elevation */
-    pSlpOutBuf->stride_height[1] = pBufferInfo->imageHeight;
+    pSlpOutBuf->stride_width[0] = ALIGN(pBufferInfo->imageWidth, S5P_FIMV_NV12M_HALIGN);
+    pSlpOutBuf->stride_width[1] = ALIGN(pBufferInfo->imageWidth, S5P_FIMV_NV12M_HALIGN);
+    pSlpOutBuf->stride_height[0] = ALIGN(pBufferInfo->imageHeight, S5P_FIMV_NV12M_HALIGN);
+    pSlpOutBuf->stride_height[1] = ALIGN(pBufferInfo->imageHeight/2, S5P_FIMV_NV12M_HALIGN);
+
+
 /*
     if (pVideoDec->bDRMPlayerMode == OMX_TRUE) {
         pSlpOutBuf->a[0] = 0;

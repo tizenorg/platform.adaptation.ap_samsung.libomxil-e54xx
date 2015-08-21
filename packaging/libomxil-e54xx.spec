@@ -3,7 +3,7 @@ Summary: OpenMAX IL for e54xx
 Version: 1.0.0
 License: TO BE FILLED IN
 Group: Development/Libraries
-Release: 1
+Release: 2
 ExclusiveArch: %arm
 Source: %{name}-%{version}.tar.gz
 Requires(post): /sbin/ldconfig

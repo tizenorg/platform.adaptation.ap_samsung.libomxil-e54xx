@@ -2095,17 +2095,13 @@ OMX_ERRORTYPE Exynos_Mpeg4Enc_SrcIn(OMX_COMPONENTTYPE *pOMXComponent, EXYNOS_OMX
 
         codecReturn = pInbufOps->Enqueue(hMFCHandle, (unsigned char **)pSrcInputData->buffer.multiPlaneBuffer.dataBuffer,
                                     (unsigned int *)pMFCYUVDataSize, MFC_INPUT_BUFFER_PLANE, pSrcInputData->bufferHeader);
-//#ifdef USE_METADATABUFFERTYPE
         if ((codecReturn == VIDEO_ERROR_NOBUFFERS) &&
-            /*(pExynosInputPort->bStoreMetaData == OMX_TRUE) &&*/
             (pExynosInputPort->bufferProcessType & BUFFER_SHARE)) {
             OMX_U32 nAllocLen[MFC_INPUT_BUFFER_PLANE] = {0, 0};
-            nAllocLen[0] = ALIGN_TO_128B(pExynosInputPort->portDefinition.format.video.nFrameWidth) *
-                                ALIGN_TO_128B(pExynosInputPort->portDefinition.format.video.nFrameHeight);
-            nAllocLen[1] = ALIGN(nAllocLen[0]/2,256);
+
             for (plane = 0; plane < MFC_INPUT_BUFFER_PLANE; plane++) {
                 planes[plane].addr = pSrcInputData->buffer.multiPlaneBuffer.dataBuffer[plane];
-                planes[plane].allocSize = nAllocLen[plane];
+                planes[plane].allocSize = pSrcInputData->buffer.multiPlaneBuffer.size[plane];
                 planes[plane].fd = pSrcInputData->buffer.multiPlaneBuffer.fd[plane];
             }
 
@@ -2120,7 +2116,6 @@ OMX_ERRORTYPE Exynos_Mpeg4Enc_SrcIn(OMX_COMPONENTTYPE *pOMXComponent, EXYNOS_OMX
                                         (unsigned int *)pMFCYUVDataSize, MFC_INPUT_BUFFER_PLANE, pSrcInputData->bufferHeader);
 
         }
-//#endif
         if (codecReturn != VIDEO_ERROR_NONE) {
             Exynos_OSAL_Log(EXYNOS_LOG_ERROR, "%s: %d: Failed - pInbufOps->Enqueue", __FUNCTION__, __LINE__);
             ret = (OMX_ERRORTYPE)OMX_ErrorCodecEncode;
