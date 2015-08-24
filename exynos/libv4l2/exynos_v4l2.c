@@ -114,7 +114,7 @@ int exynos_v4l2_open_devname(const char *devname, int oflag, ...)
         /* if the node is video device */
         if ((lstat(filename, &s) == 0) && S_ISCHR(s.st_mode) &&
                 ((int)((unsigned short)(s.st_rdev) >> 8) == 81)) {
-            minor = (int)((unsigned short)(s.st_rdev & 0x3f));
+            minor = i;
             ALOGD("try node: %s, minor: %d", filename, minor);
             /* open sysfs entry */
             sprintf(filename, "/sys/class/video4linux/video%d/name", minor);
