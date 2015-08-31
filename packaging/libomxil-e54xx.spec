@@ -1,10 +1,9 @@
 Name: libomxil-e54xx
 Summary: OpenMAX IL for e54xx
 Version: 1.0.0
-License: TO BE FILLED IN
+License: Apache-2.0
 Group: Development/Libraries
-Release: 2
-ExclusiveArch: %arm
+Release: 3
 Source: %{name}-%{version}.tar.gz
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
