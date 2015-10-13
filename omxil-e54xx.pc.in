@@ -1,6 +1,7 @@
 prefix=@prefix@
-libdir=@prefix@/lib
+libdir=@LIB_INSTALL_DIR@
 includedir=@prefix@/include
+omxdir=@libdir@
 
 Name: Samsung OpenMAX IL package
 Description: Samsung E4X12 codec

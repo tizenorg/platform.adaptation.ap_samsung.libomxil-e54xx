@@ -185,4 +185,15 @@ AC_ARG_ENABLE(drm, AC_HELP_STRING([--enable-use-drm], [use drm]),
         [BOARD_USE_DRM=no])
 AM_CONDITIONAL([BOARD_USE_DRM], [test "x$BOARD_USE_DRM" = "xyes"])
 
+AC_ARG_ENABLE(neon, AC_HELP_STRING([--enable-neon], [neon]),
+        [
+          case "${enableval}" in
+           yes) BOARD_USE_NEON=yes ;;
+           no)  BOARD_USE_NEON=no ;;
+           *)   AC_MSG_ERROR(bad value ${enableval} for --enable-neon) ;;
+          esac
+        ],
+        [BOARD_USE_NEON=no])
+AM_CONDITIONAL([BOARD_USE_NEON], [test "x$BOARD_USE_NEON" = "xyes"])
+
 AC_OUTPUT

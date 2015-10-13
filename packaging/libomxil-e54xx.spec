@@ -28,7 +28,10 @@ development package for libomxil-e54xx-v4l2
 %build
 ./autogen.sh
 
-export CFLAGS+=" -mfpu=neon\
+export CFLAGS+="\
+%ifnarch aarch64
+ -mfpu=neon\
+%endif
  -DUSE_PB\
  -DUSE_DMA_BUF\
  -DUSE_H264_PREPEND_SPS_PPS\
@@ -36,7 +39,11 @@ export CFLAGS+=" -mfpu=neon\
  -DKERNEL_HEADER_MODIFICATION"
 
 
-%configure --prefix=%{_prefix} --disable-static --enable-dlog
+%ifnarch aarch64
+%configure --prefix=%{_prefix} --disable-static --enable-dlog --enable-neon
+%else
+%configure --prefix=%{_prefix} --disable-static --enable-dlog --disable-neon
+%endif
 
 #make %{?jobs:-j%jobs}
 make
@@ -54,11 +61,11 @@ rm -rf %{buildroot}
 
 %files
 %manifest libomxil-e54xx.manifest
-/usr/lib/*.so*
-/usr/lib/omx/*.so
+%{_libdir}/*.so*
+%{_libdir}/omx/*.so
 
 
 %files devel
 /usr/include/*
-/usr/lib/pkgconfig/*
+%{_libdir}/pkgconfig/*
 

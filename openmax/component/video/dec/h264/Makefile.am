@@ -1,5 +1,5 @@
 lib_LTLIBRARIES = libOMX.Exynos.AVC.Decoder.la
-libdir = @prefix@/lib/omx
+libdir = @libdir@/omx
 
 libOMX_Exynos_AVC_Decoder_la_SOURCES = Exynos_OMX_H264dec.c \
                                        Exynos_OMX_H264dec.h \

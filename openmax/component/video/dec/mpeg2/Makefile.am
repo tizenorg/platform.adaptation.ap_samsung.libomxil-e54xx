@@ -1,5 +1,5 @@
 lib_LTLIBRARIES = libOMX.Exynos.M2V.Decoder.la
-libdir = @prefix@/lib/omx
+libdir = @libdir@/omx
 
 libOMX_Exynos_M2V_Decoder_la_SOURCES = Exynos_OMX_Mpeg2dec.c \
                                     Exynos_OMX_Mpeg2dec.h \
