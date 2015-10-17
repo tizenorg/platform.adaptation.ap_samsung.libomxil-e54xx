@@ -49,6 +49,24 @@ extern "C" {
 #include "videodev2_exynos_media.h"
 #endif
 
+#define DUMP_V4L2_BUFFER(b) \
+fprintf("\n[%s] index=%u type=%u bytesused=%u flags=%x field=%u sequence=%u memory=%u length=%u",__FUNCTION__, \
+ b->index,b->type,b->bytesused,b->flags,b->field,b->sequence,b->memory,b->length)
+
+#define DUMP_V4L2_PLANES(p) \
+fprintf("\n[%s] bytesused=%u length=%u m.mem_offset=%u userptr=%p fd=%d data_offset=%u",__FUNCTION__, \
+p->bytesused,p->length,p->m.mem_offset,p->m.userptr,p->m.fd,p->data_offset) 
+
+
+#define DUMP_V4L2_REQ_BUF(b) \
+fprintf("\n[%s] count=%u type=%u memory=%u",__FUNCTION__, \
+b->count, b->type, b->memory)
+
+#define DUMP_V4L2_FMT_DESC(f) \
+fprintf("\n[%s] index=%u type=%u flags=%x description=[%s] pixelformat=%c%c%c%c", __FUNCTION__, \
+f->index,f->type,f->flags,f->description,((char*)&f->pixelformat)[0],((char*)&f->pixelformat)[1],\
+((char*)&f->pixelformat)[2],((char*)&f->pixelformat)[3])
+
 /*! \ingroup exynos_v4l2 */
 int exynos_v4l2_open(const char *filename, int oflag, ...);
 /*! \ingroup exynos_v4l2 */

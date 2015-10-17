@@ -409,7 +409,7 @@ int exynos_v4l2_querybuf(int fd, struct v4l2_buffer *buf)
         ALOGE("%s: buf is NULL", __func__);
         return ret;
     }
-
+    DUMP_V4L2_BUFFER(buf);
     if ((buf->memory != V4L2_MEMORY_MMAP) &&
         (buf->memory != V4L2_MEMORY_DMABUF)) {
         ALOGE("%s: unsupported memory type", __func__);
@@ -482,6 +482,8 @@ int exynos_v4l2_qbuf(int fd, struct v4l2_buffer *buf)
         ALOGE("%s: buf is NULL", __func__);
         return ret;
     }
+    DUMP_V4L2_BUF(buf);
+    DUMP_V4L2_PLANE(buf->m.planes);
 
     if ((buf->memory != V4L2_MEMORY_MMAP) &&
 	(buf->memory != V4L2_MEMORY_USERPTR) &&

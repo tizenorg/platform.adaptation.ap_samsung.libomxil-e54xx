@@ -1452,7 +1452,7 @@ static ExynosVideoErrorType MFC_Encoder_Run_Inbuf(void *pHandle)
         goto EXIT;
     }
 
-    if (pCtx->bStreamonInbuf == VIDEO_FALSE) {
+    if (pCtx->bStreamonInbuf == VIDEO_FALSE && pCtx->nInbufsEnqued == pCtx->nInbufs) {
         if (exynos_v4l2_streamon(pCtx->hEnc, V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) != 0) {
             ALOGE("%s: Failed to streamon for input buffer", __func__);
             ret = VIDEO_ERROR_APIFAIL;
@@ -1479,7 +1479,7 @@ static ExynosVideoErrorType MFC_Encoder_Run_Outbuf(void *pHandle)
         goto EXIT;
     }
 
-    if (pCtx->bStreamonOutbuf == VIDEO_FALSE) {
+    if (pCtx->bStreamonOutbuf == VIDEO_FALSE && pCtx->nOutbufsEnqued == pCtx->nOutbufs) {
         if (exynos_v4l2_streamon(pCtx->hEnc, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE) != 0) {
             ALOGE("%s: Failed to streamon for output buffer", __func__);
             ret = VIDEO_ERROR_APIFAIL;
@@ -1899,6 +1899,7 @@ static ExynosVideoErrorType MFC_Encoder_Enqueue_Inbuf(
     }
 
     pCtx->pInbuf[buf.index].pPrivate = pPrivate;
+    pCtx->nInbufsEnqued ++;
 
 EXIT:
     return ret;
@@ -1977,6 +1978,7 @@ static ExynosVideoErrorType MFC_Encoder_Enqueue_Outbuf(
     }
 
     pCtx->pOutbuf[buf.index].pPrivate = pPrivate;
+    pCtx->nOutbufsEnqued ++;
 
 EXIT:
     return ret;
