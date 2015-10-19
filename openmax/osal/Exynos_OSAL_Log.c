@@ -66,7 +66,7 @@ void _Exynos_OSAL_Log(EXYNOS_LOG_LEVEL logLevel, const char *tag, const char *ms
 
     va_end(argptr);
 #else
-#ifdef DISABLE_USE_DLOG
+#ifdef USE_DLOG
     va_list argptr;
 
     if (component_debug_level < 0) {
