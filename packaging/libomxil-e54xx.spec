@@ -3,13 +3,14 @@ Summary: OpenMAX IL for e54xx
 Version: 1.0.0
 License: Apache-2.0
 Group: Development/Libraries
-Release: 3
+Release: 4
 Source: %{name}-%{version}.tar.gz
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires: kernel-headers
 BuildRequires: pkgconfig(dlog)
 BuildRequires: pkgconfig(mm-common)
+ExclusiveArch: %arm aarch64
 %description
 implementation of OpenMAX IL for e54xx-v4l2
 
