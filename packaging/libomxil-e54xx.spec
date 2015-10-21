@@ -3,24 +3,25 @@ Summary: OpenMAX IL for e54xx
 Version: 1.0.0
 License: Apache-2.0
 Group: Development/Libraries
-Release: 3
+Release: 4
 Source: %{name}-%{version}.tar.gz
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires: kernel-headers
 BuildRequires: pkgconfig(dlog)
 BuildRequires: pkgconfig(mm-common)
+ExclusiveArch: %arm aarch64
 %description
-implementation of OpenMAX IL for e54xx-v4l2
+implementation of OpenMAX IL for e54xx
 
 
 %package devel
-Summary: OpenMAX IL for e54xx-v4l2 (Developement)
+Summary: OpenMAX IL for e54xx (Developement)
 Group: Development/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description devel
-development package for libomxil-e54xx-v4l2
+development package for libomxil-e54xx
 
 %prep
 %setup -q
@@ -31,6 +32,7 @@ development package for libomxil-e54xx-v4l2
 export CFLAGS+="\
 %ifnarch aarch64
  -mfpu=neon\
+ -DUSE_NEON\
 %endif
  -DUSE_PB\
  -DUSE_DMA_BUF\

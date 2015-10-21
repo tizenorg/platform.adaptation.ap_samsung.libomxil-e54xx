@@ -14,5 +14,4 @@ libswconverter_la_SOURCES += csc_ARGB8888_to_YUV420SP_NEON.s \
                             csc_tiled_to_linear_crop_neon.s \
                             csc_tiled_to_linear_deinterleave_crop_neon.s
 
-libswconverter_la_CFLAGS += -DUSE_NEON
 endif
