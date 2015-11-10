@@ -380,7 +380,7 @@ OMX_BOOL Exynos_Preprocessor_InputData(OMX_COMPONENTTYPE *pOMXComponent, EXYNOS_
             for (plane = 0; plane < MFC_INPUT_BUFFER_PLANE; plane++) {
                /* It seems MFC is not considering fd, so sending physical address.
                 Will be removed when MFC works correctly with buf fd. */
-                srcInputData->buffer.multiPlaneBuffer.dataBuffer[plane] = mm_buf->handle.paddr[plane];
+                srcInputData->buffer.multiPlaneBuffer.dataBuffer[plane] = mm_buf->data[plane];//mm_buf->handle.paddr[plane];
                 srcInputData->buffer.multiPlaneBuffer.fd[plane] = mm_buf->handle.dmabuf_fd[plane];
                 srcInputData->buffer.multiPlaneBuffer.size[plane] = mm_buf->size[plane];
                 Exynos_OSAL_Log(EXYNOS_LOG_ERROR, "[ENC] get fd[%d] %d , a[%d] %x size:[%d]"
