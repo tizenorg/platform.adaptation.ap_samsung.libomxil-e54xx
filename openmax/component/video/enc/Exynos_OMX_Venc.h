@@ -34,7 +34,16 @@
 #include "Exynos_OMX_Baseport.h"
 #include "Exynos_OMX_Basecomponent.h"
 
-#define MAX_VIDEO_INPUTBUFFER_NUM    5
+#ifdef SLP_PLATFORM
+/* FIXME: for camera slow motion 12 buffer and eos issue, we increase this value */
+/* FIXME: for trim small resolution video. dec + enc case */
+#define MAX_CAMERA_INPUTBUFFER_NUM          13 /* number of metadata buffer */
+#else
+#define MAX_CAMERA_INPUTBUFFER_NUM          12 /* number of metadata buffer */
+#endif
+
+
+#define MAX_VIDEO_INPUTBUFFER_NUM    MAX_CAMERA_INPUTBUFFER_NUM
 #define MAX_VIDEO_OUTPUTBUFFER_NUM   4
 
 #define DEFAULT_FRAME_WIDTH          176
@@ -56,14 +65,6 @@
 
 #define MFC_INPUT_BUFFER_PLANE              2
 #define MFC_OUTPUT_BUFFER_PLANE             1
-
-#ifdef SLP_PLATFORM
-/* FIXME: for camera slow motion 12 buffer and eos issue, we increase this value */
-/* FIXME: for trim small resolution video. dec + enc case */
-#define MAX_CAMERA_INPUTBUFFER_NUM          13 /* number of metadata buffer */
-#else
-#define MAX_CAMERA_INPUTBUFFER_NUM          12 /* number of metadata buffer */
-#endif
 
 
 // The largest metadata buffer size advertised
