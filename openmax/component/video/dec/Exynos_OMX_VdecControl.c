@@ -1203,7 +1203,7 @@ OMX_ERRORTYPE Exynos_OMX_VideoDecodeGetParameter(
 #ifdef SLP_PLATFORM
             case supportFormat_3:
                 portFormat->eCompressionFormat = OMX_VIDEO_CodingUnused;
-                portFormat->eColorFormat       = OMX_SEC_COLOR_FormatNV12T_DmaBuf_Fd;
+                portFormat->eColorFormat       = OMX_SEC_COLOR_FormatNV12L_DmaBuf_Fd;
                 portFormat->xFramerate         = portDefinition->format.video.xFramerate;
                 break;
 #endif
