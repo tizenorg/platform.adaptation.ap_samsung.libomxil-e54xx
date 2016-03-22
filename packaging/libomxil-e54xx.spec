@@ -3,14 +3,21 @@ Summary: OpenMAX IL for e54xx
 Version: 1.0.0
 License: Apache-2.0
 Group: Development/Libraries
-Release: 4
+Release: 5
 Source: %{name}-%{version}.tar.gz
 Requires(post): /sbin/ldconfig
 Requires(postun): /sbin/ldconfig
 BuildRequires: kernel-headers
 BuildRequires: pkgconfig(dlog)
 BuildRequires: pkgconfig(mm-common)
+BuildRequires: model-build-features
+
+%if "%{tizen_target_name}" == "TM1"
+ExclusiveArch:
+%else
 ExclusiveArch: %arm aarch64
+%endif
+
 %description
 implementation of OpenMAX IL for e54xx
 
