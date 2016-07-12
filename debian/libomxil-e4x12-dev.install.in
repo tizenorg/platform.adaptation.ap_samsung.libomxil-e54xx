@@ -1,7 +1,0 @@
-# if your module creates shared libraries
-@PREFIX@/include/*
-@PREFIX@/lib/pkgconfig/*
-@PREFIX@/lib/*.la
-@PREFIX@/lib/*.a
-@PREFIX@/lib/omx/*.la
-@PREFIX@/lib/omx/*.a
