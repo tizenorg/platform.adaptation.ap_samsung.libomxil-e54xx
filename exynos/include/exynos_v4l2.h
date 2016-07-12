@@ -148,7 +148,6 @@ int exynos_subdev_enum_mbus_code(int fd, struct v4l2_subdev_mbus_code_enum *mbus
 #include "../kernel_header/compiler.h"
 #include "../kernel_header/media.h"
 #else
-#include <linux/compiler.h>
 #include <linux/media.h>
 #endif
 
