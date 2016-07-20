@@ -49,6 +49,10 @@ extern "C" {
 #include "videodev2_exynos_media.h"
 #endif
 
+#define V4L2_CID_MPEG_MFC_BASE      (V4L2_CTRL_CLASS_MPEG | 0x2000)
+#define V4L2_CID_MPEG_MFC51_VIDEO_FRAME_TAG	\
+									(V4L2_CID_MPEG_MFC_BASE + 6)
+
 /*! \ingroup exynos_v4l2 */
 int exynos_v4l2_open(const char *filename, int oflag, ...);
 /*! \ingroup exynos_v4l2 */
